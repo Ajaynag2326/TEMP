@@ -20,6 +20,7 @@
 
       const decrement = (id) => {
         cart[id] = cart[id] - 1;
+        cart[id]<1 && delete cart[id];
         showCart();
       };
 
@@ -27,6 +28,8 @@
         cart[id] = cart[id] + 1;
         showCart();
       };
+
+      
 
       const showTotal = () => {
         let total = products.reduce((sum, value) => {
@@ -52,6 +55,8 @@
         });
 
         divCart.innerHTML = str;
+        let count=Object.keys(cart).length;
+        items.innerHTML=count;
         showTotal();
       };
 
@@ -67,6 +72,7 @@
   </head>
   <body onload="showProducts()">
     <h1>My Store</h1>
+    <h4>Cart:<span id="items"></span></h4>
     <hr />
     <h3>Products</h3>
     <div id="divProducts"></div>
